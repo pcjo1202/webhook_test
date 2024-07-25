@@ -14,7 +14,7 @@ async function sendDiscordWebhook() {
   const webhookURL = process.env.DISCORD_WEBHOOK_URL; // GitHub Secrets에 저장된 웹훅 URL을 사용
 
   const data = {
-    content: 'Deployment completed successfully!',
+    content: 'Deployment completed successfully!', //Test
   };
 
   try {
