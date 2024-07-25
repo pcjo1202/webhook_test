@@ -2,24 +2,36 @@ name: test
 
 on:
   schedule:
-    - cron: "20 22 * * *"
+    - cron: "30 22 * * *"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      # 현재 repository로 접근
       - uses: actions/checkout@v4
 
+      # 서버의 시간을 KST로 변경
+      - name: Set timezone to KST
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tzdata
+          sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+          sudo dpkg-reconfigure -f noninteractive tzdata
+
+      # Node.js 설치
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 'latest'
           cache: 'npm'
 
-      - name: Install dependencies
+      # npm i
+      - name: dependencies 설치
         run: npm install
 
-      - name: Run deployment script
+      # 스크립트 실행
+      - name: Run
         env:
           MM_WEBHOOK_URL: ${{ secrets.MM_WEBHOOK_URL }}
         run: node MMdeploy.js
