@@ -2,7 +2,7 @@ name: test
 
 on:
   schedule:
-    - cron: '41 19 * * *' # 매일...
+    - cron: '43 19 * * *' # 매일...
 
 jobs:
   deploy:
