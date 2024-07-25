@@ -24,7 +24,7 @@ async function sendDiscordWebhook() {
   };
 
   try {
-    const response = await axios.post(webhookURL, data);
+    axios.post(webhookURL, data);
   } catch (error) {
     console.error('Error sending message to Discord:', error);
   }
