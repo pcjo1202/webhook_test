@@ -20,12 +20,14 @@ async function sendDiscordWebhook() {
   const webhookURL = process.env.MM_WEBHOOK_URL; // GitHub Secrets에 저장된 웹훅 URL을 사용
 
   const body = {
-    icon_url: 'https://mattermost.com/wp-content/uploads/2022/02/icon.png',
     text: `#### Test results for July 27th, 2017\n@channel please review failed tests.\n\n| Component  | Tests Run   | Tests Failed                                   |\n|:-----------|:-----------:|:-----------------------------------------------|\n| Server     | 948         | ✅ 0                           |\n| Web Client | 123         | ⚠️ 2 [(see details)](https://linktologs) |\n| iOS Client | 78          | ⚠️ 3 [(see details)](https://linktologs) |`,
   };
 
+  const header = { 'Content-Type': 'application/json' };
+
   try {
-    axios.post(webhookURL, body);
+    const response = axios.post(webhookURL, body, header);
+    console.log(response);
   } catch (error) {
     console.error('Error sending message to Discord:', error);
   }

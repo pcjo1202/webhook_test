@@ -11,7 +11,7 @@ async function deploy() {
 
 const message = `
 # test
-## 이렇게 하는게 되나?
+## discord test
 ---
 `;
 
