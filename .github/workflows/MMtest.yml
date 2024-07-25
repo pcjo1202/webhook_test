@@ -20,5 +20,5 @@ jobs:
 
       - name: Run deployment script
         env:
-          WEBHOOK_URL: ${{ secrets.MM_WEBHOOK_URL }}
+          MM_WEBHOOK_URL: ${{ secrets.MM_WEBHOOK_URL }}
         run: node MMdeploy.js
