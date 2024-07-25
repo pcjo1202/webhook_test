@@ -9,17 +9,24 @@ async function deploy() {
   await sendDiscordWebhook();
 }
 
+const message = `
+# test
+## 이렇게 하는게 되나?
+---
+`;
+
 // Discord 웹훅을 통해 메시지 전송
 async function sendDiscordWebhook() {
   const webhookURL = process.env.DISCORD_WEBHOOK_URL; // GitHub Secrets에 저장된 웹훅 URL을 사용
 
   const data = {
-    content: 'Deployment completed successfully!', //Test
+    content: message, //Test
   };
 
   try {
     const response = await axios.post(webhookURL, data);
     console.log('Message sent to Discord:', response.status);
+    console.log(message);
   } catch (error) {
     console.error('Error sending message to Discord:', error);
   }
