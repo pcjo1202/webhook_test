@@ -2,26 +2,25 @@ name: test
 
 on:
   schedule:
-    - cron: '20 19 * * *'  # 매일 오후 2시(UTC)에 실행
+    - cron: '34 19 * * *' # 매일 오후 2시(UTC)에 실행
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Run deployment script
-      run: node deploy.js
-
-    - name: Notify via Webhook
-      run: curl -X POST -H 'Content-type: application/json' --data '{"text":"Deployment completed!"}' ${{ secrets.WEBHOOK_URL }}
+      - name: Run deployment script
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: node deploy.js
