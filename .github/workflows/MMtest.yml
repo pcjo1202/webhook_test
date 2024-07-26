@@ -1,8 +1,9 @@
 name: test
 
 on:
-  schedule:
-    - cron: "45 13 * * *" # UTC 시간으로 설정
+  push:
+  #schedule:
+  #  - cron: "45 13 * * *" # UTC 시간으로 설정
 
 jobs:
   deploy:

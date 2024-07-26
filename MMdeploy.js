@@ -1,26 +1,11 @@
 const axios = require('axios');
 
-// 배포 로직
-async function deploy() {
-  console.log('Deploying application...');
-  // 여기에 실제 배포 로직을 작성해
-
-  // 배포 완료 후 웹훅을 통해 Discord에 메시지 전송
-  await sendDiscordWebhook();
-}
-
-const message = `
-# test
-## 이렇게 하는게 되나?
----
-`;
-
-// Discord 웹훅을 통해 메시지 전송
-async function sendDiscordWebhook() {
+// 웹훅을 통해 메시지 전송
+async function sendWebhook(message) {
   const webhookURL = process.env.MM_WEBHOOK_URL; // GitHub Secrets에 저장된 웹훅 URL을 사용
 
   const body = {
-    text: `#### Test`,
+    text: message,
   };
 
   try {
@@ -31,8 +16,14 @@ async function sendDiscordWebhook() {
     });
     console.log(response);
   } catch (error) {
-    console.error('Error sending message to Discord:', error);
+    console.error('Error :', error);
   }
+}
+
+// 배포 로직
+async function deploy() {
+  const message = `테스트`;
+  await sendWebhook(message);
 }
 
 // 배포 스크립트 실행
