@@ -22,7 +22,7 @@ async function sendWebhook(message) {
 
 // 배포 로직
 async function deploy() {
-  const message = `승호야 안녕`;
+  const message = `# 승호야 안녕!`;
   await sendWebhook(message);
 }
 
