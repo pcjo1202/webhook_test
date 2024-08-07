@@ -3,8 +3,6 @@ const axios = require('axios');
 // 웹훅을 통해 메시지 전송
 async function sendWebhook(message) {
   // const webhookURL = process.env.MM_WEBHOOK_URL; // GitHub Secrets에 저장된 웹훅 URL을 사용
-  const webhookURL =
-    'https://meeting.ssafy.com/hooks/m1t17fm6tintuniyio3yxhyd8y';
 
   const body = {
     text: message,
